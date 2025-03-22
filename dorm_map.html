@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorm Finder Map</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Title Styling */
+    h1 {
+      color: #500000;
+      margin: 20px;
+      font-size: 32px;
+    }
+
+    /* Map Styling */
+    #map {
+      height: 600px;
+      width: 100%;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
+
+    /* Results Section Styling */
+    #results {
+      margin-top: 40px;
+      width: 80%;
+      max-width: 900px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #results h2 {
+      color: #500000;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    #topResults {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    #topResults li {
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dorm Finder Map</h1>
+  <div id="map"></div>
+
+  <div id="results">
+    <h2>Top 3 Best Matches for Dorms</h2>
+    <ol id="topResults">
+      <!-- Blank list items, will be populated dynamically later -->
+    </ol>
+  </div>
+
+  <script>
+    // Initialize the map
+    function initMap() {
+      const campusLocation = { lat: 30.6175, lng: -96.3404 }; // Texas A&M campus location
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: campusLocation,
+      });
+
+      // Fetch search data from sessionStorage (using dummy data here for demonstration)
+      const mapType = 'dorm'; // Set map type as 'dorm' for this page
+      const budgetMin = 500;  // Dummy budget min
+      const budgetMax = 2000; // Dummy budget max
+
+      // Fetch the top 3 results for dorms based on search data
+      const topResults = getTopResults(mapType, budgetMin, budgetMax);
+
+      // Display top results in the list
+      const topResultsList = document.getElementById('topResults');
+      topResults.forEach(result => {
+        const li = document.createElement('li');
+        li.textContent = result.name; // Name of the dorm
+        topResultsList.appendChild(li);
+      });
+
+      // Highlight campus and dorm locations on the map
+      highlightCampusAndResults(map, topResults);
+    }
+
+    // Function to get top results (currently uses dummy data for now)
+    function getTopResults(mapType, budgetMin, budgetMax) {
+      return [
+        { name: 'Best Dorm 1', location: { lat: 30.618, lng: -96.341 } },
+        { name: 'Best Dorm 2', location: { lat: 30.616, lng: -96.342 } },
+        { name: 'Best Dorm 3', location: { lat: 30.617, lng: -96.343 } },
+      ];
+    }
+
+    // Function to highlight campus and dorm locations on the map
+    function highlightCampusAndResults(map, results) {
+      // Campus Marker
+      const campusMarker = new google.maps.Marker({
+        position: { lat: 30.6175, lng: -96.3404 },
+        map: map,
+        title: 'Texas A&M Campus',
+      });
+
+      // Dorm Markers
+      results.forEach(result => {
+        const marker = new google.maps.Marker({
+          position: result.location,
+          map: map,
+          title: result.name,
+        });
+      });
+    }
+  </script>
+</body>
+</html>

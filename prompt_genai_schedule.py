@@ -16,7 +16,7 @@ class parse_schedule(BaseModel):
 
 response = client.models.generate_content(
 	model="gemini-2.0-flash", 
-    contents=["Parse this image of a university schedule and make a JSON containing: class_name, class_code, class_time, and class_location.", image],
+    contents=["Parse this image of a university schedule and make a JSON containing: class_name, class_code, class_time, and class_location. For class_location omit the '-XXX', and the parenthesis.", image],
     config = {
         'response_mime_type': 'application/json',
 		'response_schema': list[parse_schedule],

@@ -1,7 +1,8 @@
 
 from google import genai
-from google.maps import routing_v2
 import os
+import requests
+import json
 
 client = genai.Client(api_key=os.environ.get('GOOGLE_API_KEY'))
 
@@ -11,20 +12,41 @@ response = client.models.generate_content(
 print(response.text)
 
 
-def sample_compute_routes():
-	# Create a client
-	maps_client = routing_v2.RoutesClient(credentials=os.environ.get('GOOGLE_API_KEY'))
+def compute_request_matrix(data):
+	url = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
+	headers = {
+		"Content-Type": "application/json",
+		"X-Goog-Api-Key": os.environ.get('GOOGLE_API_KEY'),
+		"X-Goog-FieldMask": "originIndex,destinationIndex,duration,distanceMeters,status,condition"
+	}
 
-	# Initialize request argument(s)
-	request = routing_v2.ComputeRouteMatrixRequest(
-		origins=[routing_v2.RouteMatrixOrigin(routing_v2.Waypoint(address="722 Lubbock St, College Station, TX 77843"))],
-		destinations=[routing_v2.RouteMatrixDestination(routing_v2.Waypoint(address="466 Nagle St, College Station, TX 77843"))]
-	)
+	response = requests.post(url, headers=headers, data=json.dumps(data))
+	return response
 
-	# Make the request
-	response = maps_client.compute_routes(request=request)
-
-	# Handle the response
-	print(response)
-
-sample_compute_routes()
+data = {
+	"origins": [
+		{
+			"waypoint": {
+				"address": "722 Lubbock St, College Station, TX 77843"
+			}
+		},
+		{
+			"waypoint": {
+				"address": "306 University Dr, College Station, TX 77843"
+			}
+		}
+	],
+	"destinations": [
+		{
+			"waypoint": {
+				"address": "466 Nagle St, College Station, TX 77843"
+			}
+		},
+		{
+		"waypoint": {
+			"address": "632 Penberthy Bl, College Station, TX 77843"
+			}
+		}
+	]
+}
+print(compute_request_matrix(data).json())

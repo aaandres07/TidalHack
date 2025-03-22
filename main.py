@@ -12,7 +12,39 @@ response = client.models.generate_content(
 print(response.text)
 
 
-def compute_request_matrix(data):
+def compute_request_matrix(courses):
+	data = {
+		"origins": [
+			{
+				"waypoint": {
+					"address": "722 Lubbock St, College Station, TX 77843"
+				}
+			},
+			{
+				"waypoint": {
+					"address": "306 University Dr, College Station, TX 77843"
+				}
+			},
+			{
+				"waypoint": {
+					"address": "125 Spence St, College Station, TX 77843"
+				}
+			}
+		],
+		"destinations": [],
+		"travelMode": "WALK"
+	}
+
+	with open('buildings.json', 'r') as file:	
+		buildings = json.load(file)
+		for building in buildings['classes']:
+			if building['building_code'] in courses:
+				data['destinations'].append({
+					"waypoint": {
+						"address": building['address']
+					}
+				})
+
 	url = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
 	headers = {
 		"Content-Type": "application/json",
@@ -23,31 +55,4 @@ def compute_request_matrix(data):
 	response = requests.post(url, headers=headers, data=json.dumps(data))
 	return response
 
-data = {
-	"origins": [
-		{
-			"waypoint": {
-				"address": "722 Lubbock St, College Station, TX 77843"
-			}
-		},
-		{
-			"waypoint": {
-				"address": "306 University Dr, College Station, TX 77843"
-			}
-		}
-	],
-	"destinations": [
-		{
-			"waypoint": {
-				"address": "466 Nagle St, College Station, TX 77843"
-			}
-		},
-		{
-		"waypoint": {
-			"address": "632 Penberthy Bl, College Station, TX 77843"
-			}
-		}
-	],
-	"travelMode": "WALK",
-}
-print(compute_request_matrix(data).json())
+print(compute_request_matrix(['ZACH', 'BLOC', 'HELD']).json())

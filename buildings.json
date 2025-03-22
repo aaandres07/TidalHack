@@ -29,6 +29,71 @@
             "building_name": "Heldenfels Hall",
             "building_code": "HELD",
             "address": "466 Nagle St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Wisenbaker Engineering Building",
+            "building_code": "WEB",
+            "address": "188 Bizzell St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Emerging Technologies Building",
+            "building_code": "ETB",
+            "address": "101 Bizzell St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Jack E. Brown Chemical Engineering Building",
+            "building_code": "CHEN",
+            "address": "100 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Thompson Hall",
+            "building_code": "THOM",
+            "address": "510 Ross St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Scoates Hall",
+            "building_code": "SCTS",
+            "address": "333 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Harvey R. Bright Building",
+            "building_code": "HRBB",
+            "address": "710 Ross St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Doherty Building",
+            "building_code": "DRTY",
+            "address": "242 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Joe C. Richardson Petroleum Engineering Building",
+            "building_code": "RICH",
+            "address": "245 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Dwight Look Engineering Building",
+            "building_code": "DLEB",
+            "address": "199 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "James J. Cain '51 Building",
+            "building_code": "JCAIN",
+            "address": "180 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "AI Engineering Building",
+            "building_code": "AIEN",
+            "address": "423 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Teague Research Center",
+            "building_code": "TEAG",
+            "address": "735 Lamar St, College Station, TX 77843"
+        },
+        {
+            "building_name": "H.J. (Bill) and Reta Haynes Engineering Building",
+            "building_code": "HEB",
+            "address": "727 Ross St, College Station, TX 77843"
         }
     ],
     "dorms": [

@@ -27,7 +27,7 @@ def compute_request_matrix(courses):
 			},
 			{
 				"waypoint": {
-					"address": "125 Spence St, College Station, TX 77843"
+					"address": "225 Discovery Dr, College Station, TX 77843"
 				}
 			}
 		],

@@ -17,7 +17,7 @@ response = client.models.generate_content(
 	config = {
 		'response_mime_type': 'application/json',
 		'response_schema': list[Rankings],
-	},
+	}
 )
 
 print(response.text)

@@ -9,7 +9,7 @@ image = PIL.Image.open(input("Please enter the file path to your schedule: "))
 
 response = client.models.generate_content(
 	model="gemini-2.0-flash", 
-    contents=["Parse this image of a university schedule and make a JSON containing: class name, class code, class time, and class location.", image]
+    contents=["Parse this image of a university schedule and make a JSON containing: class_name, class_code, class_time, and class_location.", image]
 )
 print(response.text)
 

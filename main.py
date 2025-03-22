@@ -47,6 +47,7 @@ data = {
 			"address": "632 Penberthy Bl, College Station, TX 77843"
 			}
 		}
-	]
+	],
+	"travelMode": "WALK",
 }
 print(compute_request_matrix(data).json())

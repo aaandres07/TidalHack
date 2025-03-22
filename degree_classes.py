@@ -18,7 +18,7 @@ def get_degree_class_data():
             "CHEM 117": ClassInfo(rooms={}),
             "ENGL 103": ClassInfo(rooms={}),
             "ENGL 104": ClassInfo(rooms={}),
-            "ENGR 102": ClassInfo(rooms={"ZACH": 28, "BLOC": 0, "ILCB": 31}),
+            "ENGR 102": ClassInfo(rooms={"ZACH": 28, "BLOC": 40, "ILCB": 31}),
             "MATH 151": ClassInfo(rooms={}),
             "ENGR 216": ClassInfo(rooms={"ZACH": 10, "BLOC": 12, "HELD": 28}),
             "PHYS 216": ClassInfo(rooms={"MPHY": 10, "BLOC": 12, "HELD": 28}),

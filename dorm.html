@@ -97,7 +97,7 @@
         <option value="4">4 Baths</option>
       </select>
 
-      <label for="budget-min">Budget Range ($)</label>
+      <label for="budget-min">Monthly Budget Range ($/month)</label>
       <div class="range-container">
         <input type="number" id="budget-min" name="budget-min" placeholder="Min" min="400" step="50" required />
         <input type="number" id="budget-max" name="budget-max" placeholder="Max" max="2500" step="50" required />
@@ -119,12 +119,6 @@
         <option value="bus">Bus</option>
         <option value="bike">Bike</option>
       </select>
-
-      <label for="transport-budget-min">Transportation Budget ($)</label>
-      <div class="range-container">
-        <input type="number" id="transport-budget-min" name="transport-budget-min" placeholder="Min" required />
-        <input type="number" id="transport-budget-max" name="transport-budget-max" placeholder="Max" required />
-      </div>
 
       <button type="submit">Find My Match</button>
     </form>

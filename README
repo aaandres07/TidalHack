@@ -1,5 +1,8 @@
+# Overview
+This is a program to determine which apartment or dorm in College Station based on your major or class schedule.
 
-```bash
-pip install -q -U google-genai
-pip install google-maps-routing
-```
+# User inputs
+Number of bed and baths, budget Range, major or class schedule, and transportation mode
+
+# Output
+Ranked apartments based on inputs and top class buildings

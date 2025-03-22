@@ -49,7 +49,7 @@ def compute_request_matrix(courses):
 	headers = {
 		"Content-Type": "application/json",
 		"X-Goog-Api-Key": os.environ.get('GOOGLE_API_KEY'),
-		"X-Goog-FieldMask": "originIndex,destinationIndex,duration,distanceMeters,status,condition"
+		"X-Goog-FieldMask": "originIndex,destinationIndex,duration,distanceMeters"
 	}
 
 	response = requests.post(url, headers=headers, data=json.dumps(data))

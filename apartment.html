@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apartment Finder</title>
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -21,7 +21,7 @@
       padding: 50px;
       border-radius: 12px;
       border-top: 8px solid #500000;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     h1 {
@@ -34,7 +34,7 @@
     label {
       display: block;
       margin-top: 20px;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     input, select {
@@ -56,23 +56,18 @@
       flex: 1;
     }
 
-    .range-label {
-      font-size: 14px;
-      margin-top: 4px;
-      color: #555;
-    }
-
     button {
       margin-top: 30px;
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
+      padding: 14px;
+      font-size: 17px;
       background-color: #500000;
       color: #fff;
       border: none;
       border-radius: 6px;
-      cursor: pointer;
+      font-weight: 600;
       transition: background-color 0.3s ease;
+      cursor: pointer;
     }
 
     button:hover {
@@ -86,32 +81,23 @@
     <form>
       <label for="beds">How many beds?</label>
       <select id="beds" name="beds" required>
-        <option value="">Select Beds</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+        <option value="">--Select Beds--</option>
+        <option value="1">1 Bed</option>
+        <option value="2">2 Beds</option>
+        <option value="3">3 Beds</option>
+        <option value="4">4 Beds</option>
       </select>
 
       <label for="baths">How many baths?</label>
       <select id="baths" name="baths" required>
-        <option value="">Select Baths</option>
-        <option value="1">1.0</option>
-        <option value="1.5">1.5</option>
-        <option value="2">2.0</option>
-        <option value="2.5">2.5</option>
-        <option value="3">3.0</option>
-        <option value="3.5">3.5</option>
-        <option value="4">4.0</option>
-        <option value="4.5">4.5</option>
-        <option value="5">5.0</option>
-        <option value="5.5">5.5</option>
-        <option value="6">6.0</option>
+        <option value="">--Select Baths--</option>
+        <option value="1">1 Bath</option>
+        <option value="2">2 Baths</option>
+        <option value="3">3 Baths</option>
+        <option value="4">4 Baths</option>
       </select>
 
-      <label for="budget-min">Budget Range ($/month)</label>
+      <label for="budget-min">Monthly Budget Range ($/month)</label>
       <div class="range-container">
         <input type="number" id="budget-min" name="budget-min" placeholder="Min" min="400" step="50" required />
         <input type="number" id="budget-max" name="budget-max" placeholder="Max" max="2500" step="50" required />
@@ -119,7 +105,7 @@
 
       <label for="major">Major</label>
       <select id="major" name="major" required>
-        <option value="">Select Major</option>
+        <option value="">--Select Major--</option>
         <option value="MEEN">MEEN</option>
         <option value="CHEM">CHEM</option>
         <option value="CSCE">CSCE</option>
@@ -127,18 +113,12 @@
 
       <label for="transport-mode">Transportation Mode</label>
       <select id="transport-mode" name="transport-mode" required>
-        <option value="">Select Mode</option>
+        <option value="">--Select--</option>
         <option value="walking">Walking</option>
         <option value="car">Car</option>
         <option value="bus">Bus</option>
         <option value="bike">Bike</option>
       </select>
-
-      <label for="transport-budget-min">Transportation Budget ($/month)</label>
-      <div class="range-container">
-        <input type="number" id="transport-budget-min" name="transport-budget-min" placeholder="Min" required />
-        <input type="number" id="transport-budget-max" name="transport-budget-max" placeholder="Max" required />
-      </div>
 
       <button type="submit">Find My Match</button>
     </form>

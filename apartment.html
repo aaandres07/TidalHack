@@ -56,6 +56,12 @@
       flex: 1;
     }
 
+    .note {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+
     button {
       margin-top: 30px;
       width: 100%;
@@ -105,11 +111,12 @@
         <option value="6">6.0</option>
       </select>
 
-      <label for="budget-min">Budget Range ($)</label>
+      <label for="budget-min">Monthly Budget Range ($)</label>
       <div class="range-container">
         <input type="number" id="budget-min" name="budget-min" placeholder="Min" min="400" step="50" required />
         <input type="number" id="budget-max" name="budget-max" placeholder="Max" max="2500" step="50" required />
       </div>
+      <div class="note">*Budget range is per month</div>
 
       <label for="major">Major</label>
       <select id="major" name="major" required>
@@ -127,12 +134,6 @@
         <option value="bus">Bus</option>
         <option value="bike">Bike</option>
       </select>
-
-      <label for="transport-budget-min">Transportation Budget ($)</label>
-      <div class="range-container">
-        <input type="number" id="transport-budget-min" name="transport-budget-min" placeholder="Min" required />
-        <input type="number" id="transport-budget-max" name="transport-budget-max" placeholder="Max" required />
-      </div>
 
       <button type="submit">Find My Match</button>
     </form>

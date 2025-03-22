@@ -5,7 +5,7 @@ import PIL.Image
 
 client = genai.Client(api_key=os.environ.get('GOOGLE_API_KEY'))
 
-image = PIL.Image.open("Please enter the file path to your schedule: ")
+image = PIL.Image.open(input("Please enter the file path to your schedule: "))
 
 response = client.models.generate_content(
 	model="gemini-2.0-flash", 

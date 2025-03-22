@@ -78,7 +78,7 @@
 <body>
   <div class="container">
     <h1>Dorm Finder</h1>
-    <form>
+    <form id="dorm-form">
       <label for="beds">How many beds?</label>
       <select id="beds" name="beds" required>
         <option value="">--Select Beds--</option>
@@ -97,6 +97,15 @@
         <option value="4">4 Baths</option>
       </select>
 
+      <label for="transport-mode">Transportation Mode</label>
+      <select id="transport-mode" name="transport-mode" required>
+        <option value="">--Select--</option>
+        <option value="walking">Walking</option>
+        <option value="car">Car</option>
+        <option value="bus">Bus</option>
+        <option value="bike">Bike</option>
+      </select>
+
       <label for="budget-min">Monthly Budget Range ($/month)</label>
       <div class="range-container">
         <input type="number" id="budget-min" name="budget-min" placeholder="Min" min="400" step="50" required />
@@ -111,17 +120,35 @@
         <option value="CSCE">CSCE</option>
       </select>
 
-      <label for="transport-mode">Transportation Mode</label>
-      <select id="transport-mode" name="transport-mode" required>
-        <option value="">--Select--</option>
-        <option value="walking">Walking</option>
-        <option value="car">Car</option>
-        <option value="bus">Bus</option>
-        <option value="bike">Bike</option>
-      </select>
-
       <button type="submit">Find My Match</button>
     </form>
   </div>
+
+  <script>
+    document.getElementById("dorm-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Collect form data
+      const beds = document.getElementById("beds").value;
+      const baths = document.getElementById("baths").value;
+      const budgetMin = document.getElementById("budget-min").value;
+      const budgetMax = document.getElementById("budget-max").value;
+      const major = document.getElementById("major").value;
+      const transportMode = document.getElementById("transport-mode").value;
+
+      // Store preferences in sessionStorage
+      sessionStorage.setItem("userPreferences", JSON.stringify({
+        beds,
+        baths,
+        budgetMin,
+        budgetMax,
+        major,
+        transportMode
+      }));
+
+      // Redirect to the map page
+      window.location.href = "map.html";
+    });
+  </script>
 </body>
 </html>

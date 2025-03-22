@@ -1,1 +1,5 @@
 
+```bash
+pip install -q -U google-genai
+pip install google-maps-routing
+```

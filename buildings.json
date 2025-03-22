@@ -1,0 +1,51 @@
+{
+    "classes": [
+        {
+            "building_name": "Zachry Engineering Education Complex",
+            "building_code": "ZACH",
+            "address": "125 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Innovative Learning Classroom Building",
+            "building_code": "ILCB",
+            "address": "215 Lamar St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Blocker Building",
+            "building_code": "BLOC",
+            "address": "155 Ireland St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Wehner Building",
+            "building_code": "WCBA",
+            "address": "210 Olsen Bl, College Station, TX 77843"
+        },
+        {
+            "building_name": "Physical Education Activity Program Building",
+            "building_code": "PEAP",
+            "address": "632 Penberthy Bl, College Station, TX 77843"
+        },
+        {
+            "building_name": "Heldenfels Hall",
+            "building_code": "HELD",
+            "address": "466 Nagle St, College Station, TX 77843"
+        }
+    ],
+    "dorms": [
+        {
+            "building_name": "Krueger Residence Hall",
+            "building_code": "KRUE",
+            "address": "722 Lubbock St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Hullabaloo Residence Hall",
+            "building_code": "HLBL",
+            "address": "306 University Dr, College Station, TX 77843"
+        },
+        {
+            "building_name": "White Creek Apartments C",
+            "building_code": "",
+            "address": "125 Spence St, College Station, TX 77843"
+        }
+    ]
+}

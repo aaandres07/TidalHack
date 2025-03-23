@@ -119,7 +119,7 @@
         <option value="CHEM">CHEM</option>
         <option value="CSCE">CSCE</option>
       </select>
-
+    <div class="choice-box" onclick="window.location.href='{{ url_for('dorm_map') }}'"> 
       <button type="submit">Find My Match</button>
     </form>
   </div>
@@ -145,9 +145,6 @@
         major,
         transportMode
       }));
-
-      // Redirect to the map page
-      window.location.href = "dorm_map.html";
     });
   </script>
 </body>

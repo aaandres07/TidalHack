@@ -94,7 +94,38 @@
             "building_name": "H.J. (Bill) and Reta Haynes Engineering Building",
             "building_code": "HEB",
             "address": "727 Ross St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Liberal Arts and Arts & Humanities Building",
+            "building_code": "LAAH",
+            "address": "399 Spence St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Mitchell Physics Building",
+            "building_code": "MPHY",
+            "address": "578 University Dr, College Station, TX 77843"
+        },
+        {
+            "building_name": "Harrington Education Center Classroom Building",
+            "building_code": "HECC",
+            "address": "544 Ross St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Architecture Building B",
+            "building_code": "ARCB",
+            "address": "782 Ross St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Peterson Building",
+            "building_code": "PETE",
+            "address": "435 Nagle St, College Station, TX 77843"
+        },
+        {
+            "building_name": "Chemistry",
+            "building_code": "CHEM",
+            "address": "580 Ross St, College Station, TX 77843"
         }
+        
     ],
     "dorms": [
         {

@@ -77,10 +77,10 @@
     <p class="subtitle">Find your ideal housing option in Aggieland.</p>
 
     <div class="choice-boxes">
-      <div class="choice-box" onclick="window.location.href='apartment.html'">
+      <div class="choice-box" onclick="window.location.href='{{ url_for('apartment') }}'">
         Apartment
       </div>
-      <div class="choice-box" onclick="window.location.href='dorm.html'">
+      <div class="choice-box" onclick="window.location.href='{{ url_for('dorm') }}'">
         Dorm
       </div>
     </div>

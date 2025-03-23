@@ -1,40 +1,90 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Make sure to set a secret key for session management
 
-# Load building data
-with open("buildings.json") as f:
-    building_data = json.load(f)
+# Placeholder data for apartments and dorms (replace with actual data or API calls)
+apartments = [
+    {'name': 'Best Apartment 1', 'location': {'lat': 30.618, 'lng': -96.341}, 'price': 1500},
+    {'name': 'Best Apartment 2', 'location': {'lat': 30.616, 'lng': -96.342}, 'price': 1800},
+    {'name': 'Best Apartment 3', 'location': {'lat': 30.617, 'lng': -96.343}, 'price': 1200},
+]
 
-# Placeholder function to rank apartments/dorms
-def rank_locations(preferences, building_data):
-    # TODO: Replace with your actual ranking logic
-    dorms = building_data["dorms"]
-    ranked = sorted(dorms, key=lambda d: d["building_name"])  # Dummy sort
+dorms = [
+    {'name': 'Best Dorm 1', 'location': {'lat': 30.619, 'lng': -96.340}, 'price': 800},
+    {'name': 'Best Dorm 2', 'location': {'lat': 30.617, 'lng': -96.341}, 'price': 750},
+    {'name': 'Best Dorm 3', 'location': {'lat': 30.616, 'lng': -96.342}, 'price': 700},
+]
 
-    top_3 = ranked[:3]
+# Route for the Apartment Finder form
+@app.route('/apartment', methods=['GET', 'POST'])
+def apartment():
+    if request.method == 'POST':
+        # Get form data
+        preferences = {
+            'beds': request.form.get('beds'),
+            'baths': request.form.get('baths'),
+            'budget_min': request.form.get('budget-min'),
+            'budget_max': request.form.get('budget-max'),
+            'major': request.form.get('major'),
+            'transport_mode': request.form.get('transport-mode'),
+        }
 
-    # Simulated map data: return dorms and most frequent buildings (dummy example)
-    map_data = {
-        "top_3": top_3,
-        "highlighted_buildings": [
-            {"building_code": "ZACH", "count": 5},
-            {"building_code": "ETB", "count": 3},
-        ]
-    }
+        # Store preferences in session
+        session['preferences'] = preferences
 
-    return map_data
+        # Redirect to map page with apartment results
+        return redirect(url_for('apartment_map'))
 
-@app.route('/api/recommend', methods=['POST'])
-def recommend():
-    preferences = request.json
+    return render_template('apartment.html')
 
-    if not preferences:
-        return jsonify({"error": "Missing input"}), 400
+# Route for the Dorm Finder form
+@app.route('/dorm', methods=['GET', 'POST'])
+def dorm():
+    if request.method == 'POST':
+        # Get form data
+        preferences = {
+            'beds': request.form.get('beds'),
+            'baths': request.form.get('baths'),
+            'budget_min': request.form.get('budget-min'),
+            'budget_max': request.form.get('budget-max'),
+            'transport_mode': request.form.get('transport-mode'),
+        }
 
-    results = rank_locations(preferences, building_data)
-    return jsonify(results)
+        # Store preferences in session
+        session['preferences'] = preferences
+
+        # Redirect to map page with dorm results
+        return redirect(url_for('dorm_map'))
+
+    return render_template('dorm.html')
+
+# Route for apartment map page
+@app.route('/apartment_map')
+def apartment_map():
+    preferences = session.get('preferences', {})
+
+    # Filter apartments based on preferences
+    filtered_apartments = [apt for apt in apartments
+                           if int(apt['price']) >= int(preferences.get('budget_min', 0)) and
+                           int(apt['price']) <= int(preferences.get('budget_max', 2500))]
+
+    # Render map with results
+    return render_template('apartment_map.html', apartments=filtered_apartments)
+
+# Route for dorm map page
+@app.route('/dorm_map')
+def dorm_map():
+    preferences = session.get('preferences', {})
+
+    # Filter dorms based on preferences
+    filtered_dorms = [dorm for dorm in dorms
+                      if int(dorm['price']) >= int(preferences.get('budget_min', 0)) and
+                      int(dorm['price']) <= int(preferences.get('budget_max', 2500))]
+
+    # Render map with results
+    return render_template('dorm_map.html', dorms=filtered_dorms)
 
 if __name__ == '__main__':
     app.run(debug=True)

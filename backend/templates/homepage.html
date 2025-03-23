@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Living Space Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background-color: #000000; /* Black background */
+      color: #fff; /* White text color for better contrast */
+      margin: 0;
+      padding: 50px 15%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border-top: 8px solid #500000; /* Aggie Maroon */
+    }
+
+    h1 {
+      text-align: center;
+      color: #500000;
+      font-size: 48px; /* Larger font size for the title */
+      margin-bottom: 30px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 22px; /* Increased font size for better readability */
+      color: #ccc; /* Light grey text for subtitle */
+      margin-bottom: 40px;
+    }
+
+    .choice-boxes {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px; /* Increased gap for more spacing */
+      margin-top: 50px;
+    }
+
+    .choice-box {
+      width: 48%;
+      padding: 60px; /* Increased padding for larger boxes */
+      text-align: center;
+      font-size: 28px; /* Larger font size for the choices */
+      font-weight: bold;
+      background-color: #500000;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .choice-box:hover {
+      transform: translateY(-12px); /* Floating effect with a bit more float */
+      background-color: #3c0000;
+    }
+
+    .choice-box:active {
+      background-color: #290000;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Living Space Finder</h1>
+    <p class="subtitle">Find your ideal housing option in Aggieland.</p>
+
+    <div class="choice-boxes">
+      <div class="choice-box" onclick="window.location.href='apartment.html'">
+        Apartment
+      </div>
+      <div class="choice-box" onclick="window.location.href='dorm.html'">
+        Dorm
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

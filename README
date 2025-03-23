@@ -1,8 +1,10 @@
 # Overview
-This is a program to determine which apartment or dorm in College Station based on your major or class schedule.
+This is a program to determine the best apartment or dorm in College Station based on your major or class schedule. The program will take inputs based on factors such as prefered 
+numnber of bed and baths, budget range, major or class schedule, and transportation mode. The program will output the best apartment or dorm in a form of a list ranking the top 3
+and a map that highlights the buildings that occur most often red with the respective opacity and apartment or dorm black.
 
 # User inputs
-Number of bed and baths, budget Range, major or class schedule, and transportation mode
+Number of bed and baths, budget range, major or class schedule, and transportation mode
 
 # Output
-Ranked apartments based on inputs and top class buildings
+Ranked apartments based on inputs and top class buildings.

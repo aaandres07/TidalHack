@@ -1,79 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apartment Finder Map</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-  <style>
-    /* Style for map and results */
-    #map { height: 600px; width: 100%; }
-    #results { margin-top: 20px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Rankings and Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&callback=initMap&libraries=visualization" async defer></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            width: 50%;
+            height: 100%;
+            position: relative;
+        }
+        #apartment-list {
+            width: 50%;
+            height: 100%;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f4f4f4;
+        }
+        .apartment-item {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .apartment-item h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .apartment-item p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-  <h1>Apartment Finder Map</h1>
-  <div id="map"></div>
-  <div id="results">
-    <h2>Top 3 Best Matches for Apartments</h2>
-    <ol id="topResults"></ol>
-  </div>
+    <!-- Left side: Apartment rankings -->
+    <div id="apartment-list">
+        <h2>Top 3 Recommended Apartments</h2>
+        <div id="apartment-1" class="apartment-item">
+            <h3>Apartment 1</h3>
+            <p>Location: XYZ</p>
+            <p>Distance to Classes: X mins</p>
+        </div>
+        <div id="apartment-2" class="apartment-item">
+            <h3>Apartment 2</h3>
+            <p>Location: XYZ</p>
+            <p>Distance to Classes: X mins</p>
+        </div>
+        <div id="apartment-3" class="apartment-item">
+            <h3>Apartment 3</h3>
+            <p>Location: XYZ</p>
+            <p>Distance to Classes: X mins</p>
+        </div>
+    </div>
 
-  <script>
-    function initMap() {
-      const campusLocation = { lat: 30.6175, lng: -96.3404 }; // Texas A&M campus location
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: campusLocation,
-      });
+    <!-- Right side: Map -->
+    <div id="map"></div>
 
-      // Fetch search data from sessionStorage
-      const mapType = sessionStorage.getItem('map-type'); // Should be 'apartment' for this page
-      const budgetMin = sessionStorage.getItem('budget-min');
-      const budgetMax = sessionStorage.getItem('budget-max');
+    <script>
+        var map;
+        var classLocations = [
+            {lat: 30.618, lng: -96.336}, // Example coordinates for classes
+            {lat: 30.620, lng: -96.334},
+            {lat: 30.622, lng: -96.338}
+        ];
+        
+        var apartmentLocations = [
+            {lat: 30.617, lng: -96.335}, // Example coordinates for apartments
+            {lat: 30.621, lng: -96.333},
+            {lat: 30.623, lng: -96.339}
+        ];
 
-      // Fetch the top 3 results for apartments based on search data
-      const topResults = getTopResults(mapType, budgetMin, budgetMax); // Implement this function to get apartment results
+        var rankings = [
+            {originIndex: 0, ranking: 1},
+            {originIndex: 1, ranking: 2},
+            {originIndex: 2, ranking: 3}
+        ];
 
-      // Display top results
-      const topResultsList = document.getElementById('topResults');
-      topResults.forEach(result => {
-        const li = document.createElement('li');
-        li.textContent = result.name; // Name of the apartment
-        topResultsList.appendChild(li);
-      });
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: {lat: 30.618, lng: -96.336}, // Center map around College Station
+                mapTypeId: "roadmap",
+            });
 
-      // Highlight campus and apartment locations on the map
-      highlightCampusAndResults(map, topResults);
-    }
+            // Add class locations to the map with markers
+            classLocations.forEach(function(location, index) {
+                new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: "Class Location " + (index + 1),
+                    icon: {url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}
+                });
+            });
 
-    function getTopResults(mapType, budgetMin, budgetMax) {
-      // Placeholder: Fetch results from an API or Google GenAI
-      // For demonstration, here's some dummy data for apartments
-      return [
-        { name: 'Best Apartment 1', location: { lat: 30.618, lng: -96.341 } },
-        { name: 'Best Apartment 2', location: { lat: 30.616, lng: -96.342 } },
-        { name: 'Best Apartment 3', location: { lat: 30.617, lng: -96.343 } },
-      ];
-    }
+            // Add apartment locations to the map with different markers
+            apartmentLocations.forEach(function(location, index) {
+                var iconColor = rankings.find(ranking => ranking.originIndex === index).ranking === 1 ? 'black' : 'blue';
+                new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    title: "Apartment " + (index + 1),
+                    icon: {url: "http://maps.google.com/mapfiles/ms/icons/" + iconColor + "-dot.png"}
+                });
+            });
+        }
 
-    function highlightCampusAndResults(map, results) {
-      // Campus Marker
-      const campusMarker = new google.maps.Marker({
-        position: { lat: 30.6175, lng: -96.3404 },
-        map: map,
-        title: 'Texas A&M Campus',
-      });
+        // Load rankings and apartment info from backend (AJAX Example)
+        function fetchApartmentData() {
+            fetch('/api/get_ranking_data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("apartment-1").querySelector("h3").innerText = data[0].name;
+                    document.getElementById("apartment-1").querySelector("p").innerText = "Location: " + data[0].location;
 
-      // Apartment Markers
-      results.forEach(result => {
-        const marker = new google.maps.Marker({
-          position: result.location,
-          map: map,
-          title: result.name,
-        });
-      });
-    }
-  </script>
+                    document.getElementById("apartment-2").querySelector("h3").innerText = data[1].name;
+                    document.getElementById("apartment-2").querySelector("p").innerText = "Location: " + data[1].location;
+
+                    document.getElementById("apartment-3").querySelector("h3").innerText = data[2].name;
+                    document.getElementById("apartment-3").querySelector("p").innerText = "Location: " + data[2].location;
+                })
+                .catch(error => console.log('Error fetching apartment data:', error));
+        }
+
+        // Call fetch function on page load
+        window.onload = function() {
+            fetchApartmentData();
+        };
+    </script>
 </body>
 </html>
